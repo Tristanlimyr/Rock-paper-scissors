@@ -24,7 +24,7 @@ function announceWin(computerSelection, playerSelection) {
 }
 
 // event selection
-window.addEventListener('click', printResult)
+window.addEventListener('click', run);
 
 // function to read what player has clicked
 function playerSelection(e) {
@@ -65,7 +65,8 @@ function printResult(e) {
     let result = playRound(e);
     // HTML injection for announcing result of each round
     const div = document.querySelector('.announce');
-    div.textContent = result[1];
+    window.clearTimeout(myTimeout)
+    announceResult(div, result);
     const playerScorediv = document.querySelector('#player');
     const computerScorediv = document.querySelector('#computer');
     let playerScore = Number(playerScorediv.textContent);
@@ -81,4 +82,22 @@ function printResult(e) {
         playerScorediv.textContent = `${playerScore}`;
     }
     // Draw, nothing happens
+}
+
+function announceResult(div, result) {
+    div.textContent = result[1];
+    return;
+}
+
+// removing annoucement after 3 seconds
+function removeAnnouncement() {
+    let div = document.querySelector('.announce');
+    div.textContent = "";
+}
+
+let myTimeout;
+
+function run(e) {
+    printResult(e);
+    myTimeout = setTimeout(removeAnnouncement, 3000);;
 }
