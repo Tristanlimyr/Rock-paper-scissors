@@ -1,0 +1,39 @@
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    align-items: center;
+}
+
+.title {
+    font-size: 48px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.image {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+}
