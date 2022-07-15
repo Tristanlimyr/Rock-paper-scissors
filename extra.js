@@ -50,3 +50,17 @@ function playRound(computerSelection, playerSelection) {
     return null;
 }
 */
+
+
+/*function playerSelection() {
+    let playerMove = capitalizeFirstLetter(prompt("What is your move?"));
+    // catch invalid inputs
+    if (arr.includes(playerMove)) {
+        return playerMove;
+    }
+    else {
+        alert("Invalid input. Try again.");
+        return null;
+    }
+}
+*/
