@@ -62,6 +62,8 @@ function playRound(e) {
 }
 
 function printResult(e) {
-    let result = playRound(e);
-    console.log(result[1]);
+    let result = playRound(e)[1];
+    // HTML injection
+    const div = document.querySelector('.announce');
+    div.textContent = result;
 }
