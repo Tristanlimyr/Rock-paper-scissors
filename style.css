@@ -32,8 +32,14 @@ body {
     gap: 16px;
 }
 
-.image {
+.button {
     width: 200px;
     height: 200px;
     border: 1px solid black;
+}
+
+.scoreboard {
+    display: flex;
+    align-items: center;
+    gap: 64px;
 }
