@@ -36,7 +36,7 @@ function playRound(e) {
     let computerMove = computerSelection();
     switch (playerMove) {
         case computerMove:
-            return [1, "Draw!"];
+            return [2, "Draw!"];
         case "Rock":
             if (computerMove == "Paper") {
                 return announceLose(computerMove, playerMove);
@@ -62,8 +62,23 @@ function playRound(e) {
 }
 
 function printResult(e) {
-    let result = playRound(e)[1];
-    // HTML injection
+    let result = playRound(e);
+    // HTML injection for announcing result of each round
     const div = document.querySelector('.announce');
-    div.textContent = result;
+    div.textContent = result[1];
+    const playerScorediv = document.querySelector('#player');
+    const computerScorediv = document.querySelector('#computer');
+    let playerScore = Number(playerScorediv.textContent);
+    let computerScore = Number(computerScorediv.textContent);
+    if (result[0] == 0) { // Player lose
+        computerScore++;
+        // Update score
+        computerScorediv.textContent = `${computerScore}`;
+    }
+    if (result[0] == 1) { // Player win
+        playerScore++;
+        // Update score
+        playerScorediv.textContent = `${playerScore}`;
+    }
+    // Draw, nothing happens
 }

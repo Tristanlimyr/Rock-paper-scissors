@@ -43,3 +43,11 @@ body {
     align-items: center;
     gap: 64px;
 }
+
+.playerscore,
+.computerscore {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
