@@ -1,4 +1,5 @@
 const arr = ["Rock", "Paper", "Scissors"];
+let myTimeout;
 
 function computerSelection() {
     return arr[randomIdx()];
@@ -63,12 +64,12 @@ function playRound(e) {
 
 function printResult(e) {
     let result = playRound(e);
-    // HTML injection for announcing result of each round
-    const div = document.querySelector('.announce');
-    window.clearTimeout(myTimeout)
-    announceResult(div, result);
     const playerScorediv = document.querySelector('#player');
     const computerScorediv = document.querySelector('#computer');
+    const announcementdiv = document.querySelector('.announce');
+    // HTML injection for announcing result of each round
+    window.clearTimeout(myTimeout)
+    announceResult(announcementdiv, result);
     let playerScore = Number(playerScorediv.textContent);
     let computerScore = Number(computerScorediv.textContent);
     if (result[0] == 0) { // Player lose
@@ -82,6 +83,12 @@ function printResult(e) {
         playerScorediv.textContent = `${playerScore}`;
     }
     // Draw, nothing happens
+    if (playerScore == 5) {
+        restartGame("player");
+    }
+    if (computerScore == 5) {
+        restartGame("computer");
+    }
 }
 
 function announceResult(div, result) {
@@ -91,13 +98,29 @@ function announceResult(div, result) {
 
 // removing annoucement after 3 seconds
 function removeAnnouncement() {
-    let div = document.querySelector('.announce');
-    div.textContent = "";
+    const announcementdiv = document.querySelector('.announce');
+    announcementdiv.textContent = "";
 }
-
-let myTimeout;
 
 function run(e) {
     printResult(e);
     myTimeout = setTimeout(removeAnnouncement, 3000);;
+}
+
+// Restart game when hit score of 5
+function restartGame(winner) {
+    const playerScorediv = document.querySelector('#player');
+    const computerScorediv = document.querySelector('#computer');
+    const announcementdiv = document.querySelector('.announce');
+    computerScorediv.textContent = 0;
+    playerScorediv.textContent = 0;
+    if (winner == "player") {
+        announcementdiv.textContent = "You are the WINNER!"
+        myTimeout = setTimeout(removeAnnouncement, 3000);;
+    }
+    if (winner == "computer") {
+        announcementdiv.textContent = "You lost to the computer"
+        myTimeout = setTimeout(removeAnnouncement, 3000);;
+    }
+    return null;
 }
